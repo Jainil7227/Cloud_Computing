@@ -1,0 +1,10 @@
+{
+  "name": "cloud-computing-mini-project",
+  "version": "1.0.0",
+  "description": "Secure Chunked & AES-256 Encrypted Cloud File Storage with Amazon S3",
+  "scripts": {
+    "install-all": "npm --prefix backend install && npm --prefix frontend install",
+    "start-backend": "npm --prefix backend run dev",
+    "start-frontend": "npm --prefix frontend run dev"
+  }
+}
