@@ -1,5 +1,6 @@
 import React, { useState, useRef } from 'react';
 import { UploadCloud, CheckCircle2, AlertCircle, File, Lock, Cpu, Database } from 'lucide-react';
+import { API_BASE } from '../apiConfig';
 
 export default function FileUpload({ onUploadSuccess }) {
   const [dragActive, setDragActive] = useState(false);
@@ -74,7 +75,7 @@ export default function FileUpload({ onUploadSuccess }) {
         setProgressStage(`Encrypting ${estimatedChunks} chunks with AES-256-CBC & transmitting to AWS S3...`);
       }, 700);
 
-      const res = await fetch('/api/upload', {
+      const res = await fetch(`${API_BASE}/api/upload`, {
         method: 'POST',
         body: formData,
       });

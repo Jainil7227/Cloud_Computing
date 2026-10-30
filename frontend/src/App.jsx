@@ -5,6 +5,7 @@ import StatsOverview from './components/StatsOverview';
 import FileUpload from './components/FileUpload';
 import FileList from './components/FileList';
 import ChunkInspectorModal from './components/ChunkInspectorModal';
+import { API_BASE } from './apiConfig';
 
 export default function App() {
   const [cloudStatus, setCloudStatus] = useState(null);
@@ -14,7 +15,7 @@ export default function App() {
 
   const fetchCloudStatus = async () => {
     try {
-      const res = await fetch('/api/status');
+      const res = await fetch(`${API_BASE}/api/status`);
       const data = await res.json();
       setCloudStatus(data);
     } catch (err) {
@@ -25,7 +26,7 @@ export default function App() {
 
   const fetchFiles = async () => {
     try {
-      const res = await fetch('/api/files');
+      const res = await fetch(`${API_BASE}/api/files`);
       const data = await res.json();
       setFiles(data.files || []);
     } catch (err) {

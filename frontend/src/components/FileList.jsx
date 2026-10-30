@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { API_BASE } from '../apiConfig';
 import { 
   DownloadCloud, 
   Trash2, 
@@ -28,7 +29,7 @@ export default function FileList({ files = [], onFileDeleted, onInspectFile }) {
   const handleDownload = async (file) => {
     setDownloadingId(file.fileId);
     try {
-      const res = await fetch(`/api/download/${file.fileId}`);
+      const res = await fetch(`${API_BASE}/api/download/${file.fileId}`);
       if (!res.ok) {
         const errData = await res.json();
         throw new Error(errData.error || 'Failed to download and reassemble file');
@@ -59,7 +60,7 @@ export default function FileList({ files = [], onFileDeleted, onInspectFile }) {
 
     setDeletingId(fileId);
     try {
-      const res = await fetch(`/api/files/${fileId}`, { method: 'DELETE' });
+      const res = await fetch(`${API_BASE}/api/files/${fileId}`, { method: 'DELETE' });
       if (!res.ok) throw new Error('Failed to delete file from S3');
       if (onFileDeleted) onFileDeleted(fileId);
     } catch (err) {

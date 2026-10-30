@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { X, Lock, Shield, Eye, Download, Database, Check } from 'lucide-react';
+import { API_BASE } from '../apiConfig';
 
 export default function ChunkInspectorModal({ file, onClose }) {
   const [selectedChunkIndex, setSelectedChunkIndex] = useState(0);
@@ -16,7 +17,7 @@ export default function ChunkInspectorModal({ file, onClose }) {
   const fetchChunkDetails = async (idx) => {
     setLoading(true);
     try {
-      const res = await fetch(`/api/preview-chunk/${file.fileId}/${idx}`);
+      const res = await fetch(`${API_BASE}/api/preview-chunk/${file.fileId}/${idx}`);
       const data = await res.json();
       setChunkDetail(data);
     } catch (err) {
